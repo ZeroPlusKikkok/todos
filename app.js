@@ -6,6 +6,11 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const expressSession = require('express-session')({
+  secret: 'some random string goes here',
+  resave: false,
+  saveUninitialized: false,
+});
 
 const index = require('./routes/index');
 const api = require('./routes/api/index');
@@ -14,12 +19,12 @@ const users = require('./routes/api/users');
 const app = express();
 
 // Connect mongoose
-mongoose.connect('mongodb://localhost/todos',{
+mongoose.connect('mongodb://localhost/todos', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-.then(() => console.log('Successfully Connect MongoDB...'))
-.catch((err) => console.console.log(err));
+.then(() => console.log('Successfully Connect MongoDB...')) // eslint-disable-line
+.catch((err) => console.console.log(err)); // eslint-disable-line
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,11 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(require('express-session')({
-  secret: 'any random string can go here',
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(expressSession);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -50,12 +51,12 @@ app.use('/api', api);
 app.use('/api/users', users);
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
+app.use((req, res, next) => { // eslint-disable-line
   next(createError(404));
 });
 
 // error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res, next) => { // eslint-disable-line
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

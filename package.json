@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint ."
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -21,6 +22,13 @@
     "passport-local-mongoose": "^6.1.0"
   },
   "devDependencies": {
+    "eslint": "7.2.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jest": "^24.4.0",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-react": "7.21.5",
+    "eslint-plugin-react-hooks": "4",
     "jest": "^27.0.6",
     "supertest": "^6.1.4"
   }

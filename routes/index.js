@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 
 /* GET home page. */
@@ -13,12 +14,12 @@ const testJSON = [
   },
   {
     name: 'Piyawat',
-    usernamne: 'Drunkman'
-  }
+    usernamne: 'Drunkman',
+  },
 ];
 
 router.get('/sendjson', (req, res, next) => {
-  res.json(testJSON)
+  res.json(testJSON);
 });
 
 module.exports = router;
